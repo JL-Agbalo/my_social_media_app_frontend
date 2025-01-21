@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "../components/common/Card";
-import NavigationCard from "./NavigationCard";
+import NavigationCard from "../components/layout/NavigationCard";
+import PostFormCard from "../components/layout/PostFormCard";
+import Avatar from "../components/layout/Avatar";
 
 function Home() {
   return (
@@ -9,8 +11,10 @@ function Home() {
         <NavigationCard />
       </div>
       <div className="grow">
-        <Card>Form Here</Card>
-        <Card>First First</Card>
+        <PostFormCard />
+        <Card>
+          <Avatar />
+        </Card>
       </div>
     </div>
   );
