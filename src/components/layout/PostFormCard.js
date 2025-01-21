@@ -73,7 +73,7 @@ function PostFormCard() {
           </button>
         </div>
         <div className="grow text-right">
-          <button className="bg-socailBlue text-white px-6 py-1 rounded-md">
+          <button className="bg-socialBlue text-white px-6 py-1 rounded-md">
             Share
           </button>
         </div>
