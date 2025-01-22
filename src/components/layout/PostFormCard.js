@@ -23,7 +23,7 @@ function PostFormCard() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              className="size-6"
             >
               <path
                 stroke-linecap="round"
@@ -42,7 +42,7 @@ function PostFormCard() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              className="size-6"
             >
               <path
                 stroke-linecap="round"
@@ -61,7 +61,7 @@ function PostFormCard() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              className="size-6"
             >
               <path
                 stroke-linecap="round"

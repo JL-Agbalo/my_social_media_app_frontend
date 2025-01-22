@@ -12,7 +12,7 @@ function PostCard() {
 
   return (
     <Card>
-      <div class="flex gap-3">
+      <div className="flex gap-3">
         <div>
           {/* DOTO Add Link Later */}
           {/* <Link rl="stylesheet" href={"/profile"}> */}
@@ -47,7 +47,7 @@ function PostCard() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              className="size-6"
             >
               <path
                 stroke-linecap="round"
@@ -69,7 +69,7 @@ function PostCard() {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6"
+                    className="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -89,7 +89,7 @@ function PostCard() {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6"
+                    className="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -109,7 +109,7 @@ function PostCard() {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6"
+                    className="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -129,7 +129,7 @@ function PostCard() {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6"
+                    className="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -149,7 +149,7 @@ function PostCard() {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6"
+                    className="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -185,7 +185,7 @@ function PostCard() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              className="size-6"
             >
               <path
                 stroke-linecap="round"
@@ -202,7 +202,7 @@ function PostCard() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              className="size-6"
             >
               <path
                 stroke-linecap="round"
@@ -219,7 +219,7 @@ function PostCard() {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="size-6"
+              className="size-6"
             >
               <path
                 stroke-linecap="round"
@@ -248,7 +248,7 @@ function PostCard() {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="size-6"
+                className="size-6"
               >
                 <path
                   stroke-linecap="round"

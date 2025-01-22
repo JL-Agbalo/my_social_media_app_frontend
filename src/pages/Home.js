@@ -4,10 +4,12 @@ import PostCard from "../components/layout/PostCard";
 import PostFormCard from "../components/layout/PostFormCard";
 function Home() {
   return (
-    <Layout>
-      <PostFormCard />
-      <PostCard />
-    </Layout>
+    <>
+      <Layout>
+        <PostFormCard />
+        <PostCard />
+      </Layout>
+    </>
   );
 }
 
