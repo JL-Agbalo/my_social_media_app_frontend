@@ -4,6 +4,7 @@ import Card from "../components/common/Card";
 import Avatar from "../components/layout/Avatar";
 import { useLocation, Link } from "react-router-dom";
 import PostCard from "../components/layout/PostCard";
+import FriendInfo from "../components/layout/FriendInfo";
 
 function Profile() {
   const location = useLocation();
@@ -121,7 +122,90 @@ function Profile() {
           </div>
         </div>
       </Card>
-      <PostCard />
+      {isPost && (
+        <div>
+          <PostCard />
+        </div>
+      )}
+      {isAbout && (
+        <div>
+          <Card>
+            <h2 className="text-3xl mb-2">About Me</h2>
+            <p className="mb-2 text-xm">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
+              repellat commodi rem perferendis in sunt obcaecati iure illo rerum
+              tenetur sint.
+            </p>
+            <p className="mb-2 text-xm">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
+              laborum aliquid laudantium tempore eligendi quod! Ut modi in neque
+              sint voluptas delectus et eaque, a veritatis dicta optio non
+              deleniti?
+            </p>
+          </Card>
+        </div>
+      )}
+      {isFriends && (
+        <div>
+          <Card>
+            <h2 className="text-3xl mb-2">Friends</h2>
+            <div className="">
+              <div className="border-b border-b-gray-100 p-4 -mx-4">
+                <FriendInfo />
+              </div>
+              <div className="border-b border-b-gray-100 p-4 -mx-4">
+                <FriendInfo />
+              </div>
+              <div className="border-b border-b-gray-100 p-4 -mx-4">
+                <FriendInfo />
+              </div>
+              <div className="border-b border-b-gray-100 p-4 -mx-4">
+                <FriendInfo />
+              </div>
+              <div className="border-b border-b-gray-100 p-4 -mx-4">
+                <FriendInfo />
+              </div>
+              <div className="border-b border-b-gray-100 p-4 -mx-4">
+                <FriendInfo />
+              </div>
+              <div className="border-b border-b-gray-100 p-4 -mx-4">
+                <FriendInfo />
+              </div>
+            </div>
+          </Card>
+        </div>
+      )}
+
+      {isPhotos && (
+        <Card>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1735292626224-9cbee37fd0d6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+              />
+            </div>
+            <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1737079282750-5e2580fe5603?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+              />
+            </div>
+            <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1675308621282-6e69e2b40495?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+              />
+            </div>
+            <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1703464079969-5d0ec4f038ac?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt=""
+              />
+            </div>
+          </div>
+        </Card>
+      )}
     </Layout>
   );
 }

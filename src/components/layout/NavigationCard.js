@@ -37,7 +37,14 @@ function NavigationCard() {
           </svg>
           Home
         </Link>
-        <Link href="" className={nonActiveElementClasses}>
+        <Link
+          to="/profile/friends"
+          className={
+            pathname === "/profile/friends"
+              ? activeElementClasses
+              : nonActiveElementClasses
+          }
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
