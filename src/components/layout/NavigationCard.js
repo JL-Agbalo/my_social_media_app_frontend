@@ -61,7 +61,14 @@ function NavigationCard() {
           </svg>
           Friends
         </Link>
-        <Link href="" className={nonActiveElementClasses}>
+        <Link
+          to="/saved"
+          className={
+            pathname === "/saved"
+              ? activeElementClasses
+              : nonActiveElementClasses
+          }
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -78,7 +85,14 @@ function NavigationCard() {
           </svg>
           Saved Posts
         </Link>
-        <Link href="" className={nonActiveElementClasses}>
+        <Link
+          to="/notification"
+          className={
+            pathname === "/notification"
+              ? activeElementClasses
+              : nonActiveElementClasses
+          }
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -95,7 +109,7 @@ function NavigationCard() {
           </svg>
           Notifications
         </Link>
-        <Link href="" className={nonActiveElementClasses}>
+        <Link className={nonActiveElementClasses}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

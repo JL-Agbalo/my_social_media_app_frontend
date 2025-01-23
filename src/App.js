@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import SavedPostPage from "./pages/SavedPosts";
 import Profile from "./pages/Profile";
 import ProfilePage from "./pages/profile/[...profile]";
+import Notification from "./pages/Notification";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/saved" element={<SavedPostPage />} />
+        <Route path="/notification" element={<Notification />} />
         <Route path="/profile/posts" element={<ProfilePage />} />
         <Route path="/profile/about" element={<ProfilePage />} />
         <Route path="/profile/friends" element={<ProfilePage />} />
