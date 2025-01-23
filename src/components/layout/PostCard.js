@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Card from "../common/Card";
 import Avatar from "./Avatar";
 import useClickOutside from "../../hooks/useClickOutside";
-// import Link from 'next/link';
+import { Link } from "react-router-dom";
 
 function PostCard() {
   const [dropdownOpen, setdropdownOpen] = useState(false);
@@ -14,25 +14,23 @@ function PostCard() {
     <Card>
       <div className="flex gap-3">
         <div>
-          {/* DOTO Add Link Later */}
-          {/* <Link rl="stylesheet" href={"/profile"}> */}
-          <span href="" className="cursor-pointer">
-            <Avatar />
-          </span>
-          {/* </Link> */}
+          <Link rl="stylesheet" to="/profile">
+            <span href="" className="cursor-pointer">
+              <Avatar />
+            </span>
+          </Link>
         </div>
         <div className="grow">
           <p>
-            {/* DOTO Add Link Later */}
-            {/* <Link> */}
-            <span className="font-semibold hover:underline cursor-pointer">
-              Fish Kun
-            </span>{" "}
-            {/* </Link> */}
+            <Link to="/profile">
+              <span className="font-semibold hover:underline cursor-pointer">
+                Fish Kun
+              </span>{" "}
+            </Link>
             shared a{" "}
-            <a href="" className="text-socialBlue">
+            <Link to="/album" className="text-socialBlue">
               album
-            </a>
+            </Link>
           </p>
           <p className="text-gray-500 text-sm">2 hours ago</p>
         </div>
