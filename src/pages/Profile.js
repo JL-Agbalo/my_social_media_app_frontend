@@ -34,7 +34,7 @@ function Profile() {
 
           <div className="p-4">
             <div className="ml-40">
-              <h1 className=" text-2xl font-bold">John Doe</h1>
+              <h1 className=" text-2xl font-bold">Fish Ubuntu</h1>
               <div className="text-gray-500 leading-4">Quezon, City Manila</div>
             </div>
             <div className="mt-10 flex gap-1">
