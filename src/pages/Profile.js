@@ -12,6 +12,10 @@ function Profile() {
   const isAbout = pathname.includes("about");
   const isFriends = pathname.includes("friends");
   const isPhotos = pathname.includes("photos");
+  const tabClases =
+    "flex gap-1 px-4 py-1 items-center border-b-4 border-b-white";
+  const activeTabClasses =
+    "flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold";
   return (
     <Layout>
       <Card noPadding={true}>
@@ -34,8 +38,8 @@ function Profile() {
             </div>
             <div className="mt-10 flex gap-1">
               <Link
-                to="/"
-                className="flex gap-1 px-4 py-1 items-center border-socialBlue border-b-4 text-socialBlue font-bold"
+                to="/profile/posts"
+                className={isPost ? activeTabClasses : tabClases}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +58,8 @@ function Profile() {
                 Posts
               </Link>
               <Link
-                to="/"
-                className="flex gap-1 px-4 py-1 items-center border-b-4 border-b-white"
+                to="/profile/about"
+                className={isAbout ? activeTabClasses : tabClases}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -74,8 +78,8 @@ function Profile() {
                 About
               </Link>
               <Link
-                to="/"
-                className="flex gap-1 px-4 py-1 items-center border-b-4 border-b-white"
+                to="/profile/friends"
+                className={isFriends ? activeTabClasses : tabClases}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -94,8 +98,8 @@ function Profile() {
                 Friends
               </Link>
               <Link
-                to="/"
-                className="flex gap-1 px-4 py-1 items-center border-b-4 border-b-white"
+                to="/profile/photos"
+                className={isPhotos ? activeTabClasses : tabClases}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
