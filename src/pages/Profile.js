@@ -32,12 +32,13 @@ function Profile() {
             <Avatar size={"lg"} />
           </div>
 
-          <div className="p-4">
-            <div className="ml-40">
+          <div className="p-4 pt-0 md:pt-4 pb-0">
+            <div className="ml-24 md:ml-40">
               <h1 className=" text-2xl font-bold">Fish Ubuntu</h1>
               <div className="text-gray-500 leading-4">Quezon, City Manila</div>
             </div>
-            <div className="mt-10 flex gap-1">
+            <div className="mt-4 md:mt-10 flex gap-1 justify-between md:justify-start">
+              {" "}
               <Link
                 to="/profile/posts"
                 className={isPost ? activeTabClasses : tabClases}
@@ -178,7 +179,7 @@ function Profile() {
 
       {isPhotos && (
         <Card>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <div className="rounded-md overflow-hidden h-48 flex items-center shadow-md">
               <img
                 src="https://images.unsplash.com/photo-1735292626224-9cbee37fd0d6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
