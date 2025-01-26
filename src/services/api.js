@@ -9,7 +9,17 @@ export const fetchUsers = async () => {
   return response.data;
 };
 
-export const createUser = async (user) => {
-  const response = await api.post("/users", user);
+export const signup = async (
+  userName,
+  email,
+  password,
+  passwordConfirmation
+) => {
+  const response = await api.post("/signup", {
+    userName,
+    email,
+    password,
+    password_confirmation: passwordConfirmation,
+  });
   return response.data;
 };

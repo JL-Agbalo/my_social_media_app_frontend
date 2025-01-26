@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/layout/Layout";
 import Card from "../components/common/Card";
 import { useNavigate } from "react-router-dom";
+import { signup } from "../services/api";
 
 function SignUp() {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await signup(
+      userName,
+      email,
+      password,
+      passwordConfirmation
+    );
+    if (response.token) {
+      navigate("/home");
+    } else {
+      console.log("Error Here");
+      console.error(response.errors);
+    }
+  };
+
   const navigate = useNavigate();
 
   const handleLoginRedirect = () => {
@@ -17,7 +39,25 @@ function SignUp() {
           <h2 className="text-2xl font-bold text-center text-gray-900">
             Create your account
           </h2>
-          <form className="space-y-6" onSubmit={null}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Username
+              </label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+
             <div>
               <label
                 htmlFor="email"
@@ -29,6 +69,8 @@ function SignUp() {
                 id="email"
                 name="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
@@ -45,6 +87,8 @@ function SignUp() {
                 id="password"
                 name="password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
@@ -61,6 +105,8 @@ function SignUp() {
                 id="passwordConfirmation"
                 name="passwordConfirmation"
                 type="password"
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
                 required
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
@@ -73,7 +119,7 @@ function SignUp() {
               Sign Up
             </button>
           </form>
-          <div className="text-center pt-2">
+          <div className="text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{" "}
               <button
