@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import ProfilePage from "./pages/profile/[...profile]";
 import Notification from "./pages/Notification";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/saved" element={<SavedPostPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/SignUp" element={<SignUp />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/profile/posts" element={<ProfilePage />} />
         <Route path="/profile/about" element={<ProfilePage />} />
