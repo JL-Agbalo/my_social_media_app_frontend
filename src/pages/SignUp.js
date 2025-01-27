@@ -13,7 +13,19 @@ function SignUp() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    return null;
+    e.preventDefault();
+    try {
+      const userData = {
+        username,
+        email,
+        password,
+        password_confirmation: passwordConfirmation,
+      };
+      await signup(userData);
+      navigate("/login");
+    } catch (error) {
+      console.error("Signup failed:", error);
+    }
   };
 
   const handleLoginRedirect = () => {

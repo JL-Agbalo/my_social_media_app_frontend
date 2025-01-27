@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/layout/Layout";
 import Card from "../components/common/Card";
 import { useNavigate } from "react-router-dom";
+import { login } from "../services/api";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const credentials = { email, password };
+      await login(credentials);
+      navigate("/home");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  };
 
   const handleSignupRedirect = () => {
     navigate("/signup");
@@ -17,7 +31,7 @@ function Login() {
           <h2 className="text-2xl font-bold text-center text-gray-900">
             Sign in to your account
           </h2>
-          <form className="space-y-6" onSubmit={null}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
