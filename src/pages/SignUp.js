@@ -13,19 +13,7 @@ function SignUp() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const response = await signup(
-      username,
-      email,
-      password,
-      passwordConfirmation
-    );
-    if (response.token) {
-      localStorage.setItem("jwt", response.token); // Store the JWT token
-      alert("Registration successful!");
-    } else {
-      console.error(response.errors);
-    }
+    return null;
   };
 
   const handleLoginRedirect = () => {
