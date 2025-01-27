@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "http://localhost:3001",
 });
 
 export const fetchUsers = async () => {
@@ -10,16 +10,19 @@ export const fetchUsers = async () => {
 };
 
 export const signup = async (
-  userName,
+  username,
   email,
   password,
   passwordConfirmation
 ) => {
   const response = await api.post("/signup", {
-    userName,
-    email,
-    password,
-    password_confirmation: passwordConfirmation,
+    user: {
+      username,
+      email,
+      password,
+      password_confirmation: passwordConfirmation,
+    },
   });
+  console.log("response.data", response.data);
   return response.data;
 };

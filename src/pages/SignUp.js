@@ -5,33 +5,32 @@ import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api";
 
 function SignUp() {
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await signup(
-      userName,
+      username,
       email,
       password,
       passwordConfirmation
     );
     if (response.token) {
-      navigate("/home");
+      localStorage.setItem("jwt", response.token); // Store the JWT token
+      alert("Registration successful!");
     } else {
-      console.log("Error Here");
       console.error(response.errors);
     }
   };
 
-  const navigate = useNavigate();
-
   const handleLoginRedirect = () => {
     navigate("/login");
   };
-
   return (
     <Layout hideNavigation={true}>
       <div className="flex items-center justify-center min-h-screen">
@@ -51,8 +50,8 @@ function SignUp() {
                 id="username"
                 name="username"
                 type="text"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
