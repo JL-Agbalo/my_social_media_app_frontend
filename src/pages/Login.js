@@ -4,6 +4,7 @@ import Card from "../components/common/Card";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/api";
 import { validateLogin } from "../utils/validators";
+import Cookies from "js-cookie";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -23,7 +24,13 @@ function Login() {
       const credentials = { email, password };
       const response = await login(credentials);
       const token = response.data.token;
-      localStorage.setItem("jwt", token); // Store the JWT in local storage for now
+      const expiresAt = new Date(response.data.expires_at); // Get expiration time from backend
+      Cookies.set("jwt", token, {
+        expires: expiresAt,
+        secure: true,
+        sameSite: "strict",
+      }); // Store the JWT in cookies
+      console.log("JWT saved in cookies:", Cookies.get("jwt")); // Log the JWT
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
