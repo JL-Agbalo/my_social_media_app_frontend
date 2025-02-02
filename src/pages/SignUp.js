@@ -1,23 +1,41 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import Card from "../components/common/Card";
-import { useNavigate } from "react-router-dom";
 import { signup } from "../services/api";
+import { validateSignup } from "../utils/validators";
 
 function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationErrors = validateSignup(
+      username,
+      email,
+      firstName,
+      lastName,
+      password,
+      passwordConfirmation
+    );
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       const userData = {
         username,
         email,
+        first_name: firstName,
+        last_name: lastName,
         password,
         password_confirmation: passwordConfirmation,
       };
@@ -31,6 +49,7 @@ function SignUp() {
   const handleLoginRedirect = () => {
     navigate("/login");
   };
+
   return (
     <Layout hideNavigation={true}>
       <div className="flex items-center justify-center min-h-screen">
@@ -47,16 +66,17 @@ function SignUp() {
                 Username
               </label>
               <input
-                id="username"
-                name="username"
                 type="text"
+                id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {errors.username && (
+                <p className="mt-2 text-sm text-red-600">{errors.username}</p>
+              )}
             </div>
-
             <div>
               <label
                 htmlFor="email"
@@ -65,16 +85,55 @@ function SignUp() {
                 Email
               </label>
               <input
-                id="email"
-                name="email"
                 type="email"
+                id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {errors.email && (
+                <p className="mt-2 text-sm text-red-600">{errors.email}</p>
+              )}
             </div>
-
+            <div>
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                First Name
+              </label>
+              <input
+                type="text"
+                id="firstName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                required
+              />
+              {errors.firstName && (
+                <p className="mt-2 text-sm text-red-600">{errors.firstName}</p>
+              )}
+            </div>
+            <div>
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                required
+              />
+              {errors.lastName && (
+                <p className="mt-2 text-sm text-red-600">{errors.lastName}</p>
+              )}
+            </div>
             <div>
               <label
                 htmlFor="password"
@@ -83,16 +142,17 @@ function SignUp() {
                 Password
               </label>
               <input
-                id="password"
-                name="password"
                 type="password"
+                id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {errors.password && (
+                <p className="mt-2 text-sm text-red-600">{errors.password}</p>
+              )}
             </div>
-
             <div>
               <label
                 htmlFor="passwordConfirmation"
@@ -101,33 +161,36 @@ function SignUp() {
                 Confirm Password
               </label>
               <input
-                id="passwordConfirmation"
-                name="passwordConfirmation"
                 type="password"
+                id="passwordConfirmation"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {errors.passwordConfirmation && (
+                <p className="mt-2 text-sm text-red-600">
+                  {errors.passwordConfirmation}
+                </p>
+              )}
             </div>
-
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Sign Up
-            </button>
-          </form>
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Already have an account?{" "}
+            <div>
               <button
-                onClick={handleLoginRedirect}
-                className="font-medium text-indigo-600 hover:text-indigo-500"
+                type="submit"
+                className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Sign in
+                Sign Up
               </button>
-            </p>
+            </div>
+          </form>
+          <div className="text-sm text-center">
+            Already have an account?{" "}
+            <button
+              onClick={handleLoginRedirect}
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Log in
+            </button>
           </div>
         </Card>
       </div>

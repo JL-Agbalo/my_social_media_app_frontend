@@ -3,17 +3,27 @@ import Layout from "../components/layout/Layout";
 import Card from "../components/common/Card";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/api";
+import { validateLogin } from "../utils/validators";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationErrors = validateLogin(email, password);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
       const credentials = { email, password };
-      await login(credentials);
+      const response = await login(credentials);
+      const token = response.data.token;
+      localStorage.setItem("jwt", token); // Store the JWT in local storage for now
       navigate("/home");
     } catch (error) {
       console.error("Login failed:", error);
@@ -43,11 +53,15 @@ function Login() {
                 id="email"
                 name="email"
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {errors.email && (
+                <p className="mt-2 text-sm text-red-600">{errors.email}</p>
+              )}
             </div>
-
             <div>
               <label
                 htmlFor="password"
@@ -59,28 +73,32 @@ function Login() {
                 id="password"
                 name="password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {errors.password && (
+                <p className="mt-2 text-sm text-red-600">{errors.password}</p>
+              )}
             </div>
-
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Sign In
-            </button>
-          </form>
-          <div className="text-center pt-3">
-            <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
+            <div>
               <button
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-                onClick={handleSignupRedirect}
+                type="submit"
+                className="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Sign up
+                Sign In
               </button>
-            </p>
+            </div>
+          </form>
+          <div className="text-sm text-center">
+            Don't have an account?{" "}
+            <button
+              onClick={handleSignupRedirect}
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Sign up
+            </button>
           </div>
         </Card>
       </div>
