@@ -31,7 +31,7 @@ function Login() {
         sameSite: "strict",
       }); // Store the JWT in cookies
       console.log("JWT saved in cookies:", Cookies.get("jwt")); // Log the JWT
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
     }

@@ -1,11 +1,21 @@
 import React from "react";
 import Card from "../common/Card";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function NavigationCard() {
   const location = useLocation();
   const { pathname } = location;
-  console.log(pathname);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Remove the JWT token from cookies
+    Cookies.remove("jwt", { secure: true, sameSite: "strict" });
+
+    // Redirect to the login page
+    navigate("/login");
+  };
+
   const activeElementClasses =
     "text-sm md:text-md flex md:gap-1 md:gap-3 py-3 my-1 bg-socialBlue text-white md:-mx-8 px-6 md:px-8 rounded-md shadow-md shadow-gray-300";
   const nonActiveElementClasses =
@@ -27,7 +37,7 @@ function NavigationCard() {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="size-6"
+            className="size-6"
           >
             <path
               stroke-linecap="round"
@@ -110,7 +120,10 @@ function NavigationCard() {
           </svg>
           <span className="hidden md:block">Notifications</span>
         </Link>
-        <Link className={nonActiveElementClasses}>
+        <button
+          onClick={handleLogout}
+          className="items-center space-x-2 text-sm md:text-md flex md:gap-3 py-2 my-2 md:-mx-4 px-6 md:px-4 rounded-md transition-all hover:scale-110"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -126,7 +139,7 @@ function NavigationCard() {
             />
           </svg>
           <span className="hidden md:block">Logout</span>
-        </Link>
+        </button>
       </div>
     </Card>
   );
